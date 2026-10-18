@@ -32,7 +32,7 @@ La configuration `demo` utilise H2 en mémoire. Les données de démonstration n
 .\mvnw.cmd test
 ```
 
-Le profil de test emploie H2 et contient des tests d’intégration MockMvc : lecture publique, écriture protégée, authentification JWT, création par administrateur, recherche par région, validation des données, réponse 404 et blocage de l’ancienne route non sécurisée. Ces tests ont été ajoutés, mais leur exécution n’a pas encore pu être vérifiée dans cet environnement.
+Le profil de test emploie H2 et contient des tests d’intégration MockMvc : lecture publique, écriture protégée, authentification JWT, création par administrateur, recherche par région, validation des données, réponse 404 et blocage de l’ancienne route non sécurisée. Les 6 tests ont réussi localement le 18 octobre 2026 (Java 17 / Spring Boot 3.5.3). Une CI GitHub Actions exécute également ./mvnw -B verify à chaque push et pull request.
 
 ## Endpoints
 
@@ -66,11 +66,8 @@ Ce code dérive d'un projet de stage : sa publication a été autorisée par le 
 
 ## Statut
 
-Sources nettoyées et tests HTTP ajoutés ; l'exécution complète et l'intégration Angular restent à vérifier dans un environnement avec Maven, dépendances Java et frontend.
+**Backend validé le 18 octobre 2026 :** 6 tests locaux réussis, API GET /api/agences vérifiée en HTTP 200 et [CI réussie](https://github.com/baaahaaaa/globalnet-agency-management/actions/runs/39112570267). **Limite :** le frontend Angular original n'est pas inclus; aucune validation end-to-end full-stack n'est revendiquée.
 
 ## Scripts PowerShell fournis
 
 - **`demarrer-demo.ps1`** : configure un secret JWT et un mot de passe admin temporaires aléatoires, puis lance le serveur avec H2. Aucun secret n'est écrit dans un fichier. Sous PowerShell : `powershell -ExecutionPolicy Bypass -File .\demarrer-demo.ps1`.
-- **`publier-sur-github.ps1`** : initialise Git et crée le dépôt `baaahaaaa/globalnet-agency-management` via GitHub CLI en privé par défaut. Installer `gh`, puis exécuter `gh auth login` et `powershell -ExecutionPolicy Bypass -File .\publier-sur-github.ps1`. Pour un dépôt public, utiliser `-Visibility public` après vérification des sources et de l'autorisation de publication.
-
-**Important** : le script de publication ne contourne pas les autorisations GitHub. Il ne peut pas créer le dépôt sans authentification `gh` disposant du droit de créer des dépôts. Il s'arrête s'il existe déjà un dépôt de ce nom.
