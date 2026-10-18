@@ -1,0 +1,16 @@
+# Build output and IDE settings
+target/
+.idea/
+*.iml
+.vscode/
+.settings/
+.classpath
+.project
+.DS_Store
+# Local configuration and secrets
+.env
+.env.*
+!.env.example
+*.log
+*.sqlite
+# Keep wrapper files tracked; do not commit .git/ itself
